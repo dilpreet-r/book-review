@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+{% block header %}
+<ul class="nav navbar-nav navbar-right">
+
+  <li><a href="{{ url_for('dropsession') }}" method="post"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+</ul>
+{% endblock %}
+{% block body %}
+<div class="container">
+  <h2>Search Books</h2><br>
+  <form action="{{ url_for('search')}}" method="post">
+    <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title"><br>
+    <input type="text" class="form-control" id="author" placeholder="Enter Author" name="author" ><br>
+    <input type="text" class="form-control" id="isbn_no" placeholder="Enter isbn" name="isbn_no"><br>
+    <button type="submit" class="btn btn-default">Search Book</button><br>
+  </form><br>
+  <h5>    {{ msg }}</h5><br>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        {% for tup in inf %}
+        {% if tup[0]!='id' %}
+        <th>{{ tup[0].capitalize() }}</th>
+        {% endif %}
+        {% endfor %}
+      </tr>
+
+    </thead>
+    <tbody>
+      {% for main in dat %}
+      {% for row in main%}
+      <tr>
+        <td>{{ row[1] }}</td>
+        <td><a href="{{ url_for('book',bid=row[0]) }}" method="post">{{ row[2] }}</a></td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+
+      </tr>
+      {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

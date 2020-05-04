@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Book
+{% endblock %}
+{% block header %}
+<ul class="nav navbar-nav navbar-right">
+
+  <li><a href="{{ url_for('dropsession') }}" method="post"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+</ul>
+{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row">
+  <div class="col-sm-3">
+    <h3>Book Details</h3>
+    <b>Title: </b>{{ book_det[2] }}<br>
+    <b>Author: </b>{{ book_det[3] }}<br>
+    <b>Year: </b>{{ book_det[4] }}<br>
+    <b>ISBN: </b>{{ book_det[1] }}<br><br><br>
+    <h3>Goodreads Data</h3>
+    <b>Average Rating: </b>{{ ar }}<br>
+    <b>Number of Ratings: </b>{{ rc }}
+
+
+  </div>
+  <div class="col-sm-8">
+    <h3>Submit Your Review</h3>
+    <form action="{{ url_for('book',bid=book_det[0]) }}" method="post">
+      <div class="form-group">
+      <textarea class="form-control" rows="4" id="comment" name="review" placeholder="Type your Review"></textarea>
+    </div>
+      <label for="sel1">Rate This Book:</label>
+      <select class="form-control" id="sel1" name="rating">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+      <option value=5>5</option>
+      </select><br>
+      <button type="submit" class="btn btn-default">Send Review</button>
+    </form>
+
+  </div>
+  </div>
+<div class="row">
+  <h5>    {{ msg }}</h5><br>
+  {% for view in book_review  %}
+  <div class="col-sm-3">
+    {{ view[0] }}<br>
+    <span style="font-style:italic;font-size:12px;">by {{ view[1] }}</span>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+{% endblock %}

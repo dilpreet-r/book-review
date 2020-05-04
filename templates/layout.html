@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    h5{
+      color:red;
+      font-style: italic;
+    }
+    h2{
+      font-weight: bold;
+    }
+    .col-sm-8,.col-sm-3{
+      padding: 20px;
+      margin: 10px;
+      border:2px solid lightgrey;
+      font-size: 15px;
+
+    }
+    h3{
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ url_for('index') }}"><span class="glyphicon glyphicon-book"></span> BOOK REVIEW <span style="font-style:italic;font-size:10px;">by Dilpreet Singh</span></a>
+    </div>
+    {% block header %}
+
+    {% endblock %}
+  </div>
+</nav>
+{% block body %}
+{% endblock %}
+
+
+</body>
+</html>
