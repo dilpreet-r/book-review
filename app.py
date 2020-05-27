@@ -40,6 +40,7 @@ def index():
         else:
             print(data)
             session["user"]=data[0][0]
+            return render_template('search.html',user=session["user"])
 
 
 
